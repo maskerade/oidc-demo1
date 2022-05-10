@@ -1,5 +1,5 @@
 name: Build, Lint, Test and Deploy
-on: pull_request
+on: push
 env:
   AWS_REGION: "eu-west-1"
   AWS_ACCOUNTID: "637617300747"
