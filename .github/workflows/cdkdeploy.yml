@@ -1,0 +1,34 @@
+name: Build, Lint, Test and Deploy
+on: pull_request
+env:
+  AWS_REGION: "eu-west-1"
+  AWS_ACCOUNTID: "637617300747"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy-infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v1
+
+      - name: Assume role using OIDC
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNTID }}:role/github-ci-role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - run: npm install
+
+      - name: Synth infrastructure stack
+        run: cdk synth
+
+#      - name: Deploy infrastructure stack
+#        run: yarn --cwd packages/infrastructure cdk deploy --require-approval never
