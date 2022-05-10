@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+export NODE_PATH='/Users/stefandefigueiredo/sd-gitrepos/oidc-demo1/.env/lib/node_modules'
+export NPM_CONFIG_PREFIX='/Users/stefandefigueiredo/sd-gitrepos/oidc-demo1/.env'
+export npm_config_prefix='/Users/stefandefigueiredo/sd-gitrepos/oidc-demo1/.env'
+exec '.env/bin/node' "$@"
