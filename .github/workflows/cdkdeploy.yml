@@ -28,7 +28,7 @@ jobs:
       - run: npm install
 
       - name: Synth infrastructure stack
-        run: cdk synth
+        run: npx cdk synth
 
 #      - name: Deploy infrastructure stack
 #        run: yarn --cwd packages/infrastructure cdk deploy --require-approval never
